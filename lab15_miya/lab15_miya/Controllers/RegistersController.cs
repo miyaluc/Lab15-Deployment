@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using lab15_miya.Models;
+using lab15_miya.ViewModel;
 
 namespace lab15_miya.Controllers
 {
@@ -20,9 +21,32 @@ namespace lab15_miya.Controllers
         }
 
         // GET: Registers
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string activityType, string searchString)
         {
-            return View(await _context.Register.ToListAsync());
+            IQueryable<string> activityQuery = from a in _context.Register
+                                               orderby a.Talent
+                                               select a.Talent;
+
+            var activities = from a in _context.Register
+                             select a;
+
+            if(!String.IsNullOrEmpty(searchString))
+            {
+                activities = activities.Where(a => a.Name.Contains(searchString));
+            }
+                
+            if(!String.IsNullOrEmpty(activityType))
+            {
+                activities = activities.Where(a => a.Talent == activityType);
+            }
+
+            var activityTypeVm = new SchoolActivityViewModel();
+
+            activityTypeVm.types = new SelectList(await activityQuery.Distinct().ToListAsync());
+
+            activityTypeVm.activities = await activities.ToListAsync();
+
+            return View(activityType);
         }
 
         // GET: Registers/Details/5
