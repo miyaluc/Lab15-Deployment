@@ -19,10 +19,10 @@
 
 ## ReadMe
 - Your readme should include the following information:
-	- How long did it take you to complete this assignment?
-	- What did you struggle with? Why? How did you solve?
-	- What did you learn during this assignment?
-    - What resources did you utilize for this assingment?
+	- How long did it take you to complete this assignment? 4-5 hours
+	- What did you struggle with? Why? How did you solve? I struggled with viewing my changes after posting to Azure
+	- What did you learn during this assignment? I learned where to find layouts.
+    - What resources did you utilize for this assingment? lab repos and youtube videos
 
 ## Rubric
 - 2pts: Application runs without any errors
