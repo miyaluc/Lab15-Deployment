@@ -11,6 +11,7 @@ namespace lab15_miya.Controllers
 {
     public class RegistersController : Controller
     {
+        //variables starting with an "__" are private
         private readonly lab15_miyaContext _context;
 
         public RegistersController(lab15_miyaContext context)
